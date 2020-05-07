@@ -56,8 +56,14 @@ table[4][6] = 'free'
 table = conv(table)
 
 x = 2
-while x==2:
+while x==2 or table[x]=='free':
     x = gtable.ran(4)
 table[x][6] , table[2][2] = 'free' , table[x][6]
+
+
+x = 2
+while x==2 or table[x]=='free':
+    x = gtable.ran(4)
+table[x][6] , table[2][3] = 'free' , table[x][6]
 
 plot(table)

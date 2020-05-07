@@ -30,7 +30,7 @@ def ch(sequence):
     sq = []
     while len(sq) < 3:
         k = random.randint(0,32)
-        if k%7 < 4 and k//6 not in sq:
+        if k%7 < 3 and k//6 not in sq:
             sq.append(k//6)
             for i in range(3):
                 sequence.insert(k,la[len(sq)-1][0])
@@ -62,3 +62,13 @@ def gentable():
     # lp = np.reshape(lp,(6,1))
     # table = np.hstack((table,lp ))
     # return table
+
+
+
+def add_freep(table):
+    x = np.array(['free'])
+    for i in range(5):
+        x = np.append(x, ['free'])
+    x = np.resize(x,[6,1])
+    table = np.hstack((table,x))
+    return table

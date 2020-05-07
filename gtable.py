@@ -29,8 +29,9 @@ def ch(sequence):
     la = lab().tolist()
     sq = []
     while len(sq) < 3:
+        # print(sequence)
         k = random.randint(0,32)
-        if k%7 < 3 and k//6 not in sq:
+        if k%7 <2 and k//6 not in sq:
             sq.append(k//6)
             for i in range(3):
                 sequence.insert(k,la[len(sq)-1][0])
@@ -48,6 +49,9 @@ def process_string(sequence):
 def gentable():
     #42
     sequence = np.arange(1,26)
+    shuffle(sequence)
+    shuffle(sequence)
+    shuffle(sequence)
     shuffle(sequence)
     for i in range(25):
         sequence[i] = sequence[i]//5 + 1
@@ -72,3 +76,7 @@ def add_freep(table):
     x = np.resize(x,[6,1])
     table = np.hstack((table,x))
     return table
+
+
+def ran(r):
+    return random.randint(0,r)

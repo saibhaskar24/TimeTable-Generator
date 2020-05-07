@@ -10,6 +10,7 @@ examhrs = 6
 
 
 def conv(table):
+    global names, Labs
     for i in table:
         for j in range(len(i)):
             if i[j] == 'free' or i[j] == 'Test' or i[j] == 'Revision':
@@ -21,13 +22,17 @@ def conv(table):
                     i[j] = names[int(i[j])-1]
             else:
                 i[j] = Labs[int(i[j]) - 25 ]
+    names = names[1:]
+    names.append(names[0])
+    Labs = Labs[1:]
+    Labs.append(Labs[0])
     return table
 
 
-def plot(table):
+def plot(table,x):
     ny = len(table)
     nx = len(table[0])
-    pl.figure()
+    pl.figure("Section "+ str(x+1))
     tb = pl.table(cellText=table, loc=(0,0), cellLoc='center')
     tc = tb.properties()['child_artists']
     for cell in tc: 
@@ -53,17 +58,25 @@ table[2][1] = 'Test'
 
 table[4][6] = 'free'
 
-table = conv(table)
 
 x = 2
-while x==2 or table[x]=='free':
+while x==2 or x==1 or table[x][6]=='free':
     x = gtable.ran(4)
 table[x][6] , table[2][2] = 'free' , table[x][6]
 
 
 x = 2
-while x==2 or table[x]=='free':
+while x==2 or x == 1 or table[x][6]=='free':
     x = gtable.ran(4)
+
 table[x][6] , table[2][3] = 'free' , table[x][6]
 
-plot(table)
+
+import copy
+
+sec = []
+for i in range(4):
+    sec.append(copy.deepcopy(list(table[:])))
+for i in range(4):
+    conv(sec[i])
+    plot(sec[i],i)

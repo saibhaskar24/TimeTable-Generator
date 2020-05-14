@@ -34,7 +34,7 @@ def plot(table,x):
     nx = len(table[0])
     pl.figure("Section "+ str(x+1))
     tb = pl.table(cellText=table, loc=(0,0), cellLoc='center')
-    tc = tb.properties()['child_artists']
+    tc = tb.get_child_artists()
     for cell in tc: 
         cell.set_height(1/ny)
         cell.set_width(1/nx)

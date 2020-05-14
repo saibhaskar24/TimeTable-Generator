@@ -1,7 +1,29 @@
 import random
+import matplotlib.pylab as pl
 m=6
 n=8
 Periods=m*n
+
+
+def plot(table,secname):
+    ny = len(table)
+    nx = len(table[0])
+    pl.figure("Section "+ secname)
+    tb = pl.table(cellText=table, loc=(0,0), cellLoc='center')
+    tc = tb.properties()['child_artists']
+    for cell in tc: 
+        cell.set_height(1/ny)
+        cell.set_width(1/nx)
+    ax = pl.gca()
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    pl.show()
+
+
+
+
+
 print("Enter no.of Subjects,no.of default_periods,no.of labs,no.of free_periods::")
 sub,dp,l,fp=map(int,input().split())
 
@@ -207,7 +229,8 @@ for i in range(0,m):
 print()
 print()
 
-
+plot(p,"section 1")
+plot(q,"section 2")
 
 print("subjects:",subject_faculty)
 print("labs:",lab_details)
